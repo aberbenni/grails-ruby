@@ -3,7 +3,7 @@ import javax.script.ScriptEngineManager
 import org.springframework.core.io.FileSystemResource
 
 class RubyGrailsPlugin {
-    def version = "1.0.M3"
+    def version = "1.0.M4"
     def grailsVersion = "1.2 > *"
     def title = "Ruby"
     def author = "Bobby Warner"
@@ -12,11 +12,14 @@ class RubyGrailsPlugin {
     def documentation = "http://grails.org/plugin/ruby"
     def license = "APACHE"
 
+    // specify the groupId for publishing artifacts to maven and/or grails repositories
+    def groupId="Ruby"
+
     def issueManagement = [ system: "JIRA", url: "http://jira.grails.org/browse/GPRUBY" ]
-    def scm = [ url: "https://github.com/bobbywarner/grails-ruby" ]
-
+    def scm = [ url: "https://github.com/aberbenni/grails-ruby" ]
+    
     def watchedResources = "file:./src/ruby/*.rb"
-
+    
     def onChange = { event ->
         def source = event.source
         if(source instanceof FileSystemResource && source.file.name.endsWith('.rb')) {
@@ -26,10 +29,10 @@ class RubyGrailsPlugin {
             }
         }
     }
-
+    
     def doWithDynamicMethods = { ctx ->
         ScriptEngine engine = new ScriptEngineManager().getEngineByName("jruby")
-
+		       
         def rubyFiles
         if(application.warDeployed) {
             rubyFiles = parentCtx?.getResources("**/WEB-INF/ruby/*.rb")?.toList()

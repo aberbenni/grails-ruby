@@ -7,21 +7,22 @@ grails.project.dependency.resolution = {
         excludes 'ehcache'
     }
 
-    log "warn" // log level of Ivy resolver, either 'error', 'warn', 'info', 'debug' or 'verbose'
+    log "info" // log level of Ivy resolver, either 'error', 'warn', 'info', 'debug' or 'verbose'
 
     repositories {
         grailsPlugins()
         grailsHome()
         grailsCentral()
         mavenCentral()
+        mavenRepo "http://repo1.maven.org/maven2/"
     }
 
     dependencies {
-        runtime 'org.jruby:jruby:1.6.5'
+        runtime (group: 'org.jruby', name: 'jruby', version: '1.7.3')
     }
 
     plugins {
-        build(":release:1.0.0.RC3") {
+        build(":release:2.2.1") {
             export = false
         }
     }
