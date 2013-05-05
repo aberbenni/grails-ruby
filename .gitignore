@@ -19,3 +19,7 @@ target
 out
 *.iml
 *.ipr
+/test/
+/grails-ruby-1.0.M4.zip.sha1
+/lib/
+/src/
